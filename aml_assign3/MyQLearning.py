@@ -10,7 +10,7 @@ def train_CartPole():
     bounds[1]=(-1.5,1.5)
     bounds[3]=(-1.5,1.5)
     state_size=(1,1,6,5)
-    episode=20000
+    episode=2000
     gamma=0.99
     streak=0
     error=5

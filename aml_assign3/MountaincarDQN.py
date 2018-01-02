@@ -18,8 +18,8 @@ FINAL_EPSILON = 0.1 # final value of epsilon
 LR=0.005
 class MLP(nn.Module):
     def __init__(self):
-        in_feature=4
-        out_feature=64
+        in_feature=2
+        out_feature=20
         action_num=2
         super(MLP, self).__init__()
         self.input=nn.Linear(in_feature,out_feature)
@@ -116,55 +116,47 @@ class MyDQN():
         return action
 
 
+
 def main_test():
-    env=gym.make('CartPole-v0')
+    env=gym.make('MountainCar-v0')
     env=env.unwrapped
     dqn=MyDQN()
-    count=0
-    for i in range(1,20000):
+    count = 0
+    for i in range(3000):
         #alpha = max(0.005, min(0.5, 0.5 / (1 + math.exp(((i - 30) / 80)))))
         observation=env.reset()
         #print(alpha)
         #dqn.ajust_rl(alpha)
-        c=0
-        for j in range(20000):
-            #env.render()
+
+        flag=False
+        for j in range(2000):
+            env.render()
             action=dqn.action(observation,i)
             new_observation, reward, done, info = env.step(action)
-            c+=1
-            r1 = (env.x_threshold - abs(new_observation[0])) / env.x_threshold - 0.8
-            r2 = (env.theta_threshold_radians - abs(new_observation[2])) / env.theta_threshold_radians - 0.5
-            r = r1 + r2
+
+
             #if done:
-             #   reward=-10
-            dqn.perceive(observation,action,r,new_observation,done)
+            #    reward=-1
+            dqn.perceive(observation,action,reward,new_observation,done)
 
 
             observation=new_observation
-            if done or j==19999:
-
-                break
-            '''
-            if done or j==19999:
+            if done or j == 19999:
                 if j>5000:
-                    count+=30
-                elif j>1000:
-                    count+=5
-                elif j>300:
                     count+=1
                 else:
                     count=0
-                print(i, j)
-                break'''
-        #print(i)
-        print(i,c)
-        #print(i, j + 1)
-        if count>100:
+                print(i,j)
+                break
+        print("s:",i,count)
+        if count>=20:
             break
+
     result=[]
     for i in range(2000):
         observation=env.reset()
         for j in range(20000):
+            env.render()
             action=dqn.best_action(observation)
             observation, reward, done, info = env.step(action)
             if done or j == 19999:
@@ -177,14 +169,4 @@ def main_test():
     print("var",np.std(result))
     print("len",len(result))
 
-
-
-if __name__=="__main__":
-    main_test()
-
-    q=deque()
-    q.append(1)
-    q.append(4)
-    q.append(3)
-    q.popleft()
-    print(q)
+main_test()

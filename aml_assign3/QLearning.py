@@ -2,7 +2,7 @@ import gym
 import numpy as np
 import math
 import random
-
+from matplotlib import pyplot as plt
 
 def train(id='CartPole-v0'):
     env=gym.make(id)
@@ -14,16 +14,18 @@ def train(id='CartPole-v0'):
         train_size=2000
     episode=2000
     gamma=0.99
-    streak=0
+    count=0
     Q = np.zeros(state_size+(env.action_space.n,))
     for i in range(episode):
         e=max(0.01, 2-2/(1+math.exp((-i/30))))
+        #e=max(0.01,(1-i/episode))
         alpha = max(0.1, min(0.5, 1 / (1 + math.exp(((i - 30) / 80)))))
+        #alpha=0.01
         observation=env.reset()
         state = observation2state(observation,state_size,bounds)
-        flag=False
         for j in range(train_size):
             #env.render()
+            #print(j)
             r=random.random()
             if r<e:
                 action=env.action_space.sample()
@@ -31,23 +33,37 @@ def train(id='CartPole-v0'):
                 action = np.argmax(Q[state])
             observation, reward, done, info = env.step(action)
             new_state=observation2state(observation,state_size,bounds)
+            #print(observation)
+            #print(new_state)
             Q[state+(action,)]=(1-alpha)*Q[state+(action,)]+alpha*(reward+gamma*np.amax(Q[new_state]))
             state=new_state
-            if done:
-                if id!='CartPole-v0':
-                    flag=True
-                    streak+=1
-                    print("finish",j)
+            #if j==train_size-1 and id=='CartPole-v0':
+            #    done=True
+
+            if id == 'CartPole-v0':
+                if done or j == train_size - 1:
+                    if j > 500:
+                        count += 1
+                    else:
+                        count = 0
+                    print(i, j)
                     break
+            elif id == 'MountainCar-v0' and done:
+                if j < 500:
+                    count += 1
                 else:
-                    if j>500:
-                        streak+=1
-                        flag=True
-                        print(j)
-                    break
-        if flag==False:
-            streak=0
-        if streak>100:
+                    count = 0
+                print(i, j)
+                break
+            elif done:
+                if j < 150:
+                    count += 1
+                else:
+                    count = 0
+                print(i, j)
+                break
+        print("count",i,count)
+        if  count >= 100:
             break
     print(Q)
     return Q
@@ -57,7 +73,7 @@ def test(id):
     env = gym.make(id)
     env = env.unwrapped
     bounds, state_size = getBounds_Statesize(id)
-    episode=2000
+    episode=200
     if id=='CartPole-v0':
         train_size=20000
     else:
@@ -72,9 +88,16 @@ def test(id):
             observation, reward, done, info = env.step(action)
             new_state=observation2state(observation,state_size,bounds)
             state=new_state
-            if done:
-                result.append(j)
+            if done or j==train_size-1:
+                result.append(j+1)
                 break
+    result=np.array(result)
+    if id!='CartPole-v0':
+        result=-result
+    plt.plot(result)
+    plt.xlabel("number")
+    plt.ylabel("reward")
+    plt.show()
     print("mean",np.mean(result))
     print("var",np.std(result))
     print("len",len(result))
@@ -82,8 +105,8 @@ def test(id):
 def getBounds_Statesize(id):
     env=gym.make(id)
     bounds=list(zip(env.observation_space.low,env.observation_space.high))
+    print(bounds)
     if id=='CartPole-v0':
-        bounds[1]=(-1.5,1.5)
         bounds[3]=(-1.5,1.5)
         state_size=(1,1,6,5)
     elif id=='MountainCar-v0':
@@ -109,4 +132,6 @@ def observation2state(observation,state_size,bounds):
     return tuple(state)
 
 if __name__=="__main__":
-    test('CartPole-v0')
+    #test('CartPole-v0')
+    #test('MountainCar-v0')
+    test('Acrobot-v1')
