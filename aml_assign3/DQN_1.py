@@ -9,58 +9,63 @@ import random
 import gym
 from matplotlib import pyplot as plt
 
-#MountainCar Acrobot 参数
 MEMORY_SIZE=2000
 BATCH_SIZE=32
 GAMMA=0.99
 INITIAL_EPSILON = 1 # starting value of epsilon
-FINAL_EPSILON = 0.1 # final value of epsilon
-TARGET_STEP=100
+FINAL_EPSILON = 0.001 # final value of epsilon
 LR=0.0025
-
-
-def config(id):
-    global FINAL_EPSILON
-    if id=="CartPole-v0":
-        FINAL_EPSILON=0.001
-    else:
-        FINAL_EPSILON=0.01
+HIDDEN_SIZE=64
 
 '''
 
-MountainCar Acrobot 参数
+mountaincar
 MEMORY_SIZE=2000
 BATCH_SIZE=32
 GAMMA=0.99
 INITIAL_EPSILON = 1 # starting value of epsilon
 FINAL_EPSILON = 0.01 # final value of epsilon
-TARGET_STEP=100
-LR=0.0025
+LR=0.005
 
-CartPole 参数
-MEMORY_SIZE=2000  
+acrobot 参数
+MEMORY_SIZE=2000
 BATCH_SIZE=32
-GAMMA=0.99
+GAMMA=0.9
 INITIAL_EPSILON = 1 # starting value of epsilon
-FINAL_EPSILON = 0.001 # final value of epsilon
-TARGET_STEP=100     
-LR=0.0025
+DIS=0.997
+FINAL_EPSILON = 0.1 # final value of epsilon
+LR=0.005
 '''
+
+def config(id):
+    global FINAL_EPSILON,LR,HIDDEN_SIZE
+    if id=="CartPole-v0":
+        FINAL_EPSILON=0.001
+        LR=0.0025
+    elif id=="MountainCar-v0":
+        FINAL_EPSILON=0.01
+        LR=0.005
+    else:
+        FINAL_EPSILON=0.1
+        LR=0.005
+
 class MLP(nn.Module):
     def __init__(self,env):
         in_feature=len(env.observation_space.low)
-        hidden_feature=64
+        hidden_feature=HIDDEN_SIZE
         action_num=env.action_space.n
         super(MLP, self).__init__()
         self.input=nn.Linear(in_feature,hidden_feature)
         self.input.weight.data.normal_(0, 0.1)
         self.out=nn.Linear(hidden_feature,action_num)
         self.out.weight.data.normal_(0, 0.1)
+
+
     def forward(self, input):
-        #print(self.input.weight.data)
         x=self.input(input)
         #x=F.softplus(x)
-        x=F.relu(x)
+        x=F.sigmoid(x)
+        #x=F.relu(x)
         return self.out(x)
 
 class MyDQN():
@@ -71,15 +76,11 @@ class MyDQN():
 
         self.memory=deque()
         self.mlp=MLP(env)
-        self.target=MLP(env)
         self.optimizer=torch.optim.Adam(self.mlp.parameters(),lr=LR)
         self.loss_function=nn.MSELoss()
-        self.step=TARGET_STEP
-        self.current=0
+        self.done = False
         self.epsilon=INITIAL_EPSILON
-
-        self.loss=0
-
+        self.loss = 0
 
     def ajust_rl(self,t):
         for param_group in self.optimizer.param_groups:
@@ -90,22 +91,11 @@ class MyDQN():
         self.memory.append((state,action,reward,next_state,done))
         if len(self.memory)>self.N:
             self.memory.popleft()
-        if len(self.memory)>BATCH_SIZE:
+        if len(self.memory)>self.batch_size:
             self.train()
-
-    def best_action(self,state):
-        state = Variable(torch.FloatTensor(state))
-        q = self.mlp.forward(state)
-        return np.argmax(q.data.numpy())
 
 
     def train(self):
-
-        if self.current % self.step == 0:
-            #print("update",self.current)
-            self.target.load_state_dict(self.mlp.state_dict())
-        self.current+=1
-
         batch_range=random.sample(self.memory,self.batch_size)
         states=[]
         actions=[]
@@ -122,46 +112,49 @@ class MyDQN():
         action_tensor=Variable(torch.LongTensor(np.array(actions)))
         reward_tensor=Variable(torch.FloatTensor(rewards))
         next_state_tensor=Variable(torch.FloatTensor(next_states))
-
-
-        Q=self.target.forward(next_state_tensor).detach()
+        pre = self.mlp.forward(state_tensor).gather(1, action_tensor.view(-1, 1))
+        #print(pre)
+        Q=self.mlp.forward(next_state_tensor).detach()
+        '''if self.done:
+            y=reward_tensor
+        else:
+            y = torch.max(Q, 1)[0] + reward_tensor'''
         y=GAMMA*torch.max(Q,1)[0]+reward_tensor
         for i in range(self.batch_size):
             if dones[i]:
                 y[i]=reward_tensor[i]
                 #print(i)
-        pre=self.mlp.forward(state_tensor).gather(1,action_tensor.view(-1,1))
-        #print(y)
-        #y/=self.batch_size
-        #pre/=self.batch_size
         loss=self.loss_function(pre,y)
-        #print(float(loss.data))
-        self.loss+=float(loss.data)
-
+        self.loss += float(loss.data)
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
+
+    def best_action(self,state):
+        state = Variable(torch.FloatTensor(state))
+        q = self.mlp.forward(state)
+        return np.argmax(q.data.numpy())
+
+    def action(self,state,t):
+        #state=Variable(torch.FloatTensor(state))
+        state = Variable(torch.unsqueeze(torch.FloatTensor(state), 0))
+        #e = max(0.01, 2 - 2 / (1 + math.exp((-t / 30))))
+        if np.random.rand()<self.epsilon:
+            action=np.random.randint(self.action_num)
+        else:
+            q = self.mlp.forward(state)
+            action=np.argmax(q.data.numpy())
+            #action2 = torch.max(q, 1)[1].data.numpy()[0]
+            #print("action",action,action2)
+        self.epsilon -= (INITIAL_EPSILON - FINAL_EPSILON) / 10000
+        #self.epsilon*=DIS
+        self.epsilon = max(FINAL_EPSILON, self.epsilon)
+        return action
 
     def get_loss(self):
         result=self.loss
         self.loss=0
         return result
-
-    def action(self,state,t):
-
-        state=Variable(torch.FloatTensor(state))
-        q=self.mlp.forward(state)
-        e = max(0.01, 2 - 2 / (1 + math.exp((-t / 30))))
-        #e=0.5/math.sqrt(t)
-        if np.random.uniform()<self.epsilon:
-            action=np.random.randint(self.action_num)
-            #print("random")
-        else:
-            action=np.argmax(q.data.numpy())
-        self.epsilon-=(INITIAL_EPSILON-FINAL_EPSILON)/10000
-        self.epsilon=max(FINAL_EPSILON,self.epsilon)
-        return action
-
 
 def main_test(id):
     config(id)
@@ -181,13 +174,13 @@ def main_test(id):
         for j in range(T):
             action=dqn.action(observation,i)
             new_observation, reward, done, info = env.step(action)
-            if id=='CartPole-v0':
+            if id=='CartPole-v0' :
                 r1 = (env.x_threshold - abs(new_observation[0])) / env.x_threshold - 0.8
                 r2 = (env.theta_threshold_radians - abs(new_observation[2])) / env.theta_threshold_radians - 0.5
                 reward = r1 + r2
                 '''if j<2000:
-                     reward=-200
-                '''
+                    reward=-200'''
+
             elif  done:
                 reward=100
             dqn.perceive(observation,action,reward,new_observation,done)
@@ -213,17 +206,18 @@ def main_test(id):
                 break
             else:
                 print(i, j)
-                if done and j<300:
+                if done and j<500:
                     count+=1
                 else:
                     count=0
                 break
-        train_loss.append(dqn.get_loss() / train_result[-1])
-        #if id=='CartPole-v0' and count>=20:
-        #    break
+        train_loss.append(dqn.get_loss()/train_result[-1])
+        if id=='CartPole-v0' and count>=5:
+            break
         if id!='CartPole-v0' and count>=100:
             break
     print(train_loss)
+    print(train_result)
     plt.plot(train_loss)
     plt.xlabel("round")
     plt.ylabel("loss")
@@ -251,13 +245,17 @@ def main_test(id):
     if id!='CartPole-v0':
         result=-result
     plt.plot(result)
+    plt.xlabel("round")
+    plt.ylabel("reward")
     plt.show()
     print("mean",np.mean(result))
     print("var",np.std(result))
     print("len",len(result))
 
-if __name__ == '__main__':
 
-    main_test('CartPole-v0')
-    #main_test('MountainCar-v0')
+
+
+if __name__=="__main__":
     #main_test('Acrobot-v1')
+    #main_test('MountainCar-v0')
+    main_test('CartPole-v0')
