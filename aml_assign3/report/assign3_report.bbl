@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{ref1}
+周志华.
+\newblock {\em 机器学习}.
+\newblock 清华大学出版社, 2016.
+
+\bibitem{ref3}
+V~Mnih, K~Kavukcuoglu, D~Silver, A.~A. Rusu, J~Veness, M.~G. Bellemare,
+  A~Graves, M~Riedmiller, A.~K. Fidjeland, and G~Ostrovski.
+\newblock Human-level control through deep reinforcement learning.
+\newblock {\em Nature}, 518(7540):529, 2015.
+
+\bibitem{ref2}
+Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Alex Graves, Ioannis
+  Antonoglou, Daan Wierstra, and Martin Riedmiller.
+\newblock Playing atari with deep reinforcement learning.
+\newblock {\em Computer Science}, 2013.
+
+\end{thebibliography}

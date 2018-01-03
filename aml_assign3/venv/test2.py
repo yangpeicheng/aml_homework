@@ -1,5 +1,6 @@
-'''import gym
+import gym
 env = gym.make('Acrobot-v1')
+print(env.class_name())
 print(list(zip(env.observation_space.low,env.observation_space.high)))
 print(env.observation_space.low)
 for i_episode in range(20):
@@ -13,7 +14,7 @@ for i_episode in range(20):
         if done:
             print("Episode finished after {} timesteps".format(t+1))
             break
-'''
+
 from matplotlib import pyplot as plt
 import math
 episode=2000

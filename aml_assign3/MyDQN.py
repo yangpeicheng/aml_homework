@@ -8,7 +8,29 @@ import numpy as np
 import random
 import gym
 from matplotlib import pyplot as plt
+from gym.wrappers import Monitor
 
+MEMORY_SIZE=2000
+BATCH_SIZE=32
+GAMMA=0.99
+INITIAL_EPSILON = 1 # starting value of epsilon
+FINAL_EPSILON = 0.001 # final value of epsilon
+LR=0.0025
+HIDDEN_SIZE=64
+ID="CartPole-v0"
+RECORD=False
+
+'''
+
+mountaincar
+MEMORY_SIZE=2000
+BATCH_SIZE=32
+GAMMA=0.99
+INITIAL_EPSILON = 1 # starting value of epsilon
+FINAL_EPSILON = 0.01 # final value of epsilon
+LR=0.005
+
+acrobot 参数
 MEMORY_SIZE=2000
 BATCH_SIZE=32
 GAMMA=0.9
@@ -16,36 +38,56 @@ INITIAL_EPSILON = 1 # starting value of epsilon
 DIS=0.997
 FINAL_EPSILON = 0.1 # final value of epsilon
 LR=0.005
+'''
+
+def config(id):
+    global FINAL_EPSILON,LR,ID
+    ID=id
+    if id=="CartPole-v0":
+        FINAL_EPSILON=0.001
+        LR=0.0025
+    elif id=="MountainCar-v0":
+        FINAL_EPSILON=0.01
+        LR=0.005
+    else:
+        FINAL_EPSILON=0.01
+        LR=0.005
+
 class MLP(nn.Module):
-    def __init__(self):
-        in_feature=4
-        out_feature=64
-        action_num=2
+    def __init__(self,env):
+        in_feature=len(env.observation_space.low)
+        hidden_feature=HIDDEN_SIZE
+        action_num=env.action_space.n
         super(MLP, self).__init__()
-        self.input=nn.Linear(in_feature,out_feature)
+        self.input=nn.Linear(in_feature,hidden_feature)
         self.input.weight.data.normal_(0, 0.1)
-        self.out=nn.Linear(out_feature,action_num)
+        self.out=nn.Linear(hidden_feature,action_num)
         self.out.weight.data.normal_(0, 0.1)
+
 
 
     def forward(self, input):
         x=self.input(input)
         #x=F.softplus(x)
-        x=F.sigmoid(x)
+        if ID=="CartPole-v0":
+            x=F.sigmoid(x)
+        else:
+            x=F.relu(x)
         return self.out(x)
 
 class MyDQN():
-    def __init__(self):
+    def __init__(self,env):
         self.N=MEMORY_SIZE
         self.batch_size=BATCH_SIZE
-        self.action_num=2
+        self.action_num=env.action_space.n
 
         self.memory=deque()
-        self.mlp=MLP()
+        self.mlp=MLP(env)
         self.optimizer=torch.optim.Adam(self.mlp.parameters(),lr=LR)
         self.loss_function=nn.MSELoss()
         self.done = False
         self.epsilon=INITIAL_EPSILON
+        self.loss = 0
 
     def ajust_rl(self,t):
         for param_group in self.optimizer.param_groups:
@@ -90,6 +132,7 @@ class MyDQN():
                 y[i]=reward_tensor[i]
                 #print(i)
         loss=self.loss_function(pre,y)
+        self.loss += float(loss.data)
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
@@ -115,63 +158,111 @@ class MyDQN():
         self.epsilon = max(FINAL_EPSILON, self.epsilon)
         return action
 
+    def get_loss(self):
+        result=self.loss
+        self.loss=0
+        return result
 
-def main_test():
-    env=gym.make('CartPole-v0')
+def main_test(id):
+    config(id)
+    env=gym.make(id)
     env=env.unwrapped
-    dqn=MyDQN()
-    count=0
-    for i in range(1,20000):
-        #alpha = max(0.005, min(0.5, 0.5 / (1 + math.exp(((i - 30) / 80)))))
+    dqn=MyDQN(env)
+    if id=='CartPole-v0':
+        T=20000
+    else:
+        T=2000
+
+    count = 0
+    train_result=[]
+    train_loss=[]
+    for i in range(2000):
         observation=env.reset()
-        #print(alpha)
-        #dqn.ajust_rl(alpha)
-        c=0
-        for j in range(20000):
-            #env.render()
+        for j in range(T):
             action=dqn.action(observation,i)
             new_observation, reward, done, info = env.step(action)
-            c+=1
-            r1 = (env.x_threshold - abs(new_observation[0])) / env.x_threshold - 0.8
-            r2 = (env.theta_threshold_radians - abs(new_observation[2])) / env.theta_threshold_radians - 0.5
-            r = r1 + r2
-            #if done:
-             #   reward=-10
-            dqn.perceive(observation,action,r,new_observation,done)
+            if id=='CartPole-v0' :
+                r1 = (env.x_threshold - abs(new_observation[0])) / env.x_threshold - 0.8
+                r2 = (env.theta_threshold_radians - abs(new_observation[2])) / env.theta_threshold_radians - 0.5
+                reward = r1 + r2
+                '''if j<2000:
+                    reward=-200'''
 
-
+            elif  done:
+                reward=100
+            dqn.perceive(observation,action,reward,new_observation,done)
             observation=new_observation
-            if done or j==19999:
+            if done==False and j!=T-1:
+                continue
+            train_result.append(j)
 
-                break
-            '''
-            if done or j==19999:
-                if j>5000:
-                    count+=30
-                elif j>1000:
-                    count+=5
-                elif j>300:
+            if id=='CartPole-v0':
+                if done or j==T-1:
+                    if j > 5000:
+                        count += 1
+                    else:
+                        count = 0
+                    print(i, j)
+                    break
+            elif id=='MountainCar-v0':
+                print(i, j)
+                if done and j<300:
                     count+=1
                 else:
                     count=0
+                break
+            else:
                 print(i, j)
-                break'''
-        #print(i)
-        print(i,c)
-        #print(i, j + 1)
-        if count>100:
+                if done and j<300:
+                    count+=1
+                else:
+                    count=0
+                break
+        train_loss.append(dqn.get_loss()/train_result[-1])
+        if id=='CartPole-v0' and count>=5:
             break
-    result=[]
-    for i in range(2000):
-        observation=env.reset()
-        for j in range(20000):
+        if id!='CartPole-v0' and count>=200:
+            break
+    print(train_loss)
+    print(train_result)
+    plt.plot(train_loss)
+    plt.xlabel("round")
+    plt.ylabel("loss")
+    plt.show()
+    if id!='CartPole-v0':
+        train_result = -np.array(train_result)
+    plt.plot(train_result)
+    plt.xlabel("round")
+    plt.ylabel("reward")
+    plt.show()
+
+    if RECORD:
+        env = Monitor(env,'./cartpole-experiment-0201', force=True)
+        observation = env.reset()
+        for j in range(T):
+            #env.render()
             action=dqn.best_action(observation)
             observation, reward, done, info = env.step(action)
-            if done or j == 19999:
-                print("test",j)
-                result.append(j)
+        env.close()
+
+
+    result=[]
+    for i in range(200):
+        observation=env.reset()
+        for j in range(T):
+            #env.render()
+            action=dqn.best_action(observation)
+            observation, reward, done, info = env.step(action)
+            if done or j == T-1:
+                print("test",j+1)
+                result.append(j+1)
                 break
+    result=np.array(result)
+    if id!='CartPole-v0':
+        result=-result
     plt.plot(result)
+    plt.xlabel("round")
+    plt.ylabel("reward")
     plt.show()
     print("mean",np.mean(result))
     print("var",np.std(result))
@@ -179,12 +270,19 @@ def main_test():
 
 
 
-if __name__=="__main__":
-    main_test()
 
-    q=deque()
-    q.append(1)
-    q.append(4)
-    q.append(3)
-    q.popleft()
-    print(q)
+
+
+if __name__=="__main__":
+    #main_test('Acrobot-v1')
+    #main_test('MountainCar-v0')
+    if __name__ == '__main__':
+        num = input("Please input task number:\n 1.CartPole-v0 2.MountainCar-v0 3.Acrobot-v1 \n")
+        if num == "1":
+            main_test('CartPole-v0')
+        elif num == "2":
+            main_test('MountainCar-v0')
+        elif num == "3":
+            main_test('Acrobot-v1')
+        else:
+            print("wrong choice")

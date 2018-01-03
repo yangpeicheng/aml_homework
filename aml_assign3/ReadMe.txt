@@ -1,0 +1,17 @@
+MyQlearning.py
+Q-learning算法实现
+用python命令运行后,输入1开始CartPole-v0,输入2开始MountainCar-v0,输入3开始Acrobot-v1
+test函数包括了训练和测试,训练过程中会打印当前轮数和轨迹长度,当训练结束后自动开始测试,测试数据有200组.
+测试结束后会在屏幕上显示测试的reward图,并打印reward的均值和方差.
+
+MyDQN.py
+DQN算法实现
+用python命令运行后,输入1开始CartPole-v0,输入2开始MountainCar-v0,输入3开始Acrobot-v1
+main_test函数包括了训练和测试,训练过程中会打印当前轮数和轨迹长度,当训练结束后自动开始测试,测试数据有200组.
+测试结束后会在屏幕上显示测试的reward图,并打印reward的均值和方差.
+
+MyImprovedDQN.py
+ImprovedDQN算法实现
+用python命令运行后,输入1开始CartPole-v0,输入2开始MountainCar-v0,输入3开始Acrobot-v1
+main_test函数包括了训练和测试,训练过程中会打印当前轮数和轨迹长度,当训练结束后自动开始测试,测试数据有200组.
+测试结束后会在屏幕上显示测试的reward图,并打印reward的均值和方差.

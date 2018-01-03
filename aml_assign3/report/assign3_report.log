@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2017.12.29)  2 JAN 2018 21:06
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2017.12.29)  3 JAN 2018 13:31
 entering extended mode
 **C:/Users/dislab2017/Desktop/assign/assign3_report.tex
 (C:/Users/dislab2017/Desktop/assign/assign3_report.tex
@@ -794,38 +794,43 @@ Package CJKpunct Info: punctuation spaces for family 'zhsong' do not exist. Use
  [1
 
 ]
-<CartPole-1.png, id=140, 462.528pt x 346.896pt>
-File: CartPole-1.png Graphic file (type png)
- <use CartPole-1.png>
-<MountainCar-1.png, id=142, 462.528pt x 346.896pt>
-File: MountainCar-1.png Graphic file (type png)
- <use MountainCar-1.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Acrobot-v1.png, id=143, 462.528pt x 346.896pt>
-File: Acrobot-v1.png Graphic file (type png)
- <use Acrobot-v1.png> [2 <C:/Users/dislab2017/Desktop/assign/CartPole-1.png>]
-<epsilon-alpha.png, id=156, 462.528pt x 346.896pt>
+<epsilon-alpha.png, id=140, 462.528pt x 346.896pt>
 File: epsilon-alpha.png Graphic file (type png)
  <use epsilon-alpha.png>
+<CartPole-1.png, id=144, 462.528pt x 346.896pt>
+File: CartPole-1.png Graphic file (type png)
+ <use CartPole-1.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+<MountainCar-1.png, id=145, 462.528pt x 346.896pt>
+File: MountainCar-1.png Graphic file (type png)
+ <use MountainCar-1.png>
+[2 <C:/Users/dislab2017/Desktop/assign/epsilon-alpha.png>] [3 <C:/Users/dislab2
+017/Desktop/assign/CartPole-1.png> <C:/Users/dislab2017/Desktop/assign/Mountain
+Car-1.png>] <Acrobot-v1.png, id=167, 462.528pt x 346.896pt>
+File: Acrobot-v1.png Graphic file (type png)
 
-Underfull \hbox (badness 10000) in alignment at lines 100--109
+<use Acrobot-v1.png>
+Underfull \hbox (badness 10000) in alignment at lines 106--115
 [][][]
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[3 <C:/Users/dislab2017/Desktop/assign/MountainCar-1.png> <C:/Users/dislab2017/
-Desktop/assign/Acrobot-v1.png>]
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (4.0287pt too wide) in paragraph at lines 149--150
+[]\OT1/cmr/m/n/10 DQN\C70/rm/m/n/10/7b — \C70/rm/m/n/10/6c Õ \C70/rm/m/n/10/4f 
+* \C70/rm/m/n/10/4e ã \C70/rm/m/n/10/78  \C70/rm/m/n/10/59 ‚\OT1/cmr/m/n/10 Al
+gorithm 2 [[]]\C70/rm/m/n/10/62 @ \C70/rm/m/n/10/79 :|\C70/rm/m/n/10/30 | \OT1
+/cmr/m/n/10 DQN\C70/rm/m/n/10/7b — \C70/rm/m/n/10/6c Õ \C70/rm/m/n/10/57 ú \C70
+/rm/m/n/10/4e Ž\OT1/cmr/m/n/10 Q-learning|\C70/rm/m/n/10/ff | \C70/rm/m/n/10/7
+b — \C70/rm/m/n/10/6c Õ \C70/rm/m/n/10/68 F \C70/rm/m/n/10/67 ¶ \C70/rm/m/n/10/
+54 Œ\OT1/cmr/m/n/10 Q-learning\C70/rm/m/n/10/5b Œ
+ []
 
-[4 <C:/Users/dislab2017/Desktop/assign/epsilon-alpha.png>]
+[4 <C:/Users/dislab2017/Desktop/assign/Acrobot-v1.png>]
 <DQN-cartpole-loss.png, id=173, 462.528pt x 346.896pt>
 File: DQN-cartpole-loss.png Graphic file (type png)
 
@@ -837,134 +842,134 @@ File: DQN-cartpole-distance.png Graphic file (type png)
 <DQN-cartpole-result.png, id=175, 462.528pt x 346.896pt>
 File: DQN-cartpole-result.png Graphic file (type png)
 
-<use DQN-cartpole-result.png>
-<DQN-mountain-loss.png, id=176, 462.528pt x 346.896pt>
+<use DQN-cartpole-result.png> [5 <C:/Users/dislab2017/Desktop/assign/DQN-cartpo
+le-loss.png> <C:/Users/dislab2017/Desktop/assign/DQN-cartpole-distance.png> <C:
+/Users/dislab2017/Desktop/assign/DQN-cartpole-result.png>]
+<DQN-mountain-loss.png, id=185, 462.528pt x 346.896pt>
 File: DQN-mountain-loss.png Graphic file (type png)
 
 <use DQN-mountain-loss.png>
-<DQN-mountain-distance.png, id=177, 462.528pt x 346.896pt>
+<DQN-mountain-distance.png, id=186, 462.528pt x 346.896pt>
 File: DQN-mountain-distance.png Graphic file (type png)
 
 <use DQN-mountain-distance.png>
-<DQN-mountain-result.png, id=178, 462.528pt x 346.896pt>
+<DQN-mountain-result.png, id=187, 462.528pt x 346.896pt>
 File: DQN-mountain-result.png Graphic file (type png)
 
 <use DQN-mountain-result.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<DQN-acrobot-loss.png, id=179, 462.528pt x 346.896pt>
+<DQN-acrobot-loss.png, id=189, 462.528pt x 346.896pt>
 File: DQN-acrobot-loss.png Graphic file (type png)
 
 <use DQN-acrobot-loss.png>
-<DQN-acrobot-distance.png, id=180, 462.528pt x 346.896pt>
+<DQN-acrobot-distance.png, id=190, 462.528pt x 346.896pt>
 File: DQN-acrobot-distance.png Graphic file (type png)
 
 <use DQN-acrobot-distance.png>
-<DQN-acrobot-result.png, id=181, 462.528pt x 346.896pt>
+<DQN-acrobot-result.png, id=191, 462.528pt x 346.896pt>
 File: DQN-acrobot-result.png Graphic file (type png)
 
 <use DQN-acrobot-result.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) in alignment at lines 211--220
+Underfull \hbox (badness 10000) in alignment at lines 219--228
 [][][]
  []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[5 <C:/Users/dislab2017/Desktop/assign/DQN-cartpole-loss.png> <C:/Users/dislab2
-017/Desktop/assign/DQN-cartpole-distance.png> <C:/Users/dislab2017/Desktop/assi
-gn/DQN-cartpole-result.png>]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<ImprovedDQN-cartpole-loss.png, id=189, 1075.3776pt x 346.896pt>
-File: ImprovedDQN-cartpole-loss.png Graphic file (type png)
-
-<use ImprovedDQN-cartpole-loss.png>
-<ImprovedDQN-cartpole-distance.png, id=190, 462.528pt x 346.896pt>
-File: ImprovedDQN-cartpole-distance.png Graphic file (type png)
-
-<use ImprovedDQN-cartpole-distance.png>
-File: DQN-cartpole-result.png Graphic file (type png)
- <use DQN-cartpole-result.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<ImprovedDQN-mountain-loss.png, id=191, 462.528pt x 346.896pt>
-File: ImprovedDQN-mountain-loss.png Graphic file (type png)
-
-<use ImprovedDQN-mountain-loss.png>
-<ImprovedDQN-mountain-distance.png, id=192, 462.528pt x 346.896pt>
-File: ImprovedDQN-mountain-distance.png Graphic file (type png)
-
-<use ImprovedDQN-mountain-distance.png>
-<ImprovedDQN-mountain-result.png, id=193, 462.528pt x 346.896pt>
-File: ImprovedDQN-mountain-result.png Graphic file (type png)
-
-<use ImprovedDQN-mountain-result.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [6 <C:/Users/dislab2017/Desktop/assign/DQN-mountain-loss.png> <C:/Users/dislab2
 017/Desktop/assign/DQN-mountain-distance.png> <C:/Users/dislab2017/Desktop/assi
 gn/DQN-mountain-result.png> <C:/Users/dislab2017/Desktop/assign/DQN-acrobot-los
 s.png> <C:/Users/dislab2017/Desktop/assign/DQN-acrobot-distance.png> <C:/Users/
 dislab2017/Desktop/assign/DQN-acrobot-result.png>]
-<ImprovedDQN-acrobot-loss.png, id=204, 462.528pt x 346.896pt>
+<ImprovedDQN-cartpole-loss.png, id=202, 1075.3776pt x 346.896pt>
+File: ImprovedDQN-cartpole-loss.png Graphic file (type png)
+
+<use ImprovedDQN-cartpole-loss.png>
+<ImprovedDQN-cartpole-distance.png, id=203, 462.528pt x 346.896pt>
+File: ImprovedDQN-cartpole-distance.png Graphic file (type png)
+
+<use ImprovedDQN-cartpole-distance.png>
+File: DQN-cartpole-result.png Graphic file (type png)
+ <use DQN-cartpole-result.png> [7 <C:/Users/dislab2017/Desktop/assign/ImprovedD
+QN-cartpole-loss.png> <C:/Users/dislab2017/Desktop/assign/ImprovedDQN-cartpole-
+distance.png>]
+<ImprovedDQN-mountain-loss.png, id=211, 462.528pt x 346.896pt>
+File: ImprovedDQN-mountain-loss.png Graphic file (type png)
+
+<use ImprovedDQN-mountain-loss.png>
+<ImprovedDQN-mountain-distance.png, id=212, 462.528pt x 346.896pt>
+File: ImprovedDQN-mountain-distance.png Graphic file (type png)
+
+<use ImprovedDQN-mountain-distance.png>
+<ImprovedDQN-mountain-result.png, id=213, 462.528pt x 346.896pt>
+File: ImprovedDQN-mountain-result.png Graphic file (type png)
+
+<use ImprovedDQN-mountain-result.png>
+Overfull \hbox (6.50087pt too wide) in paragraph at lines 310--311
+[]\C70/rm/m/n/10/54 Œ\OT1/cmr/m/n/10 DQN\C70/rm/m/n/10/76 ø \C70/rm/m/n/10/6b Ô
+|\C70/rm/m/n/10/ff | \OT1/cmr/m/n/10 ImprovedDQN\C70/rm/m/n/10/76 „\OT1/cmr/m/
+n/10 loss\C70/rm/m/n/10/6c â \C70/rm/m/n/10/5f b \C70/rm/m/n/10/66 ô \C70/rm/m/
+n/10/52   \C70/rm/m/n/10/7a 3 \C70/rm/m/n/10/5b š|\C70/rm/m/n/10/30 | \C70/rm/
+m/n/10/8f Ù \C70/rm/m/n/10/66 / \C70/rm/m/n/10/56 à \C70/rm/m/n/10/4e : \C70/rm
+/m/n/10/57 (\OT1/cmr/m/n/10 ImprovedDQN\C70/rm/m/n/10/4e - \C70/rm/m/n/10/5f  
+\C70/rm/m/n/10/51 e \C70/rm/m/n/10/4e †\OT1/cmr/m/n/10 Target
+ []
+
+<ImprovedDQN-acrobot-loss.png, id=214, 462.528pt x 346.896pt>
 File: ImprovedDQN-acrobot-loss.png Graphic file (type png)
 
 <use ImprovedDQN-acrobot-loss.png>
-<ImprovedDQN-acrobot-distance.png, id=205, 462.528pt x 346.896pt>
+<ImprovedDQN-acrobot-distance.png, id=215, 462.528pt x 346.896pt>
 File: ImprovedDQN-acrobot-distance.png Graphic file (type png)
 
 <use ImprovedDQN-acrobot-distance.png>
-<ImprovedDQN-acrobot-result.png, id=206, 462.528pt x 346.896pt>
+<ImprovedDQN-acrobot-result.png, id=216, 462.528pt x 346.896pt>
 File: ImprovedDQN-acrobot-result.png Graphic file (type png)
 
 <use ImprovedDQN-acrobot-result.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) in alignment at lines 325--334
+Underfull \hbox (badness 10000) in alignment at lines 333--342
 [][][]
+ []
+
+
+Underfull \hbox (badness 10000) in alignment at lines 350--365
+[][][][]
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[7 <C:/Users/dislab2017/Desktop/assign/ImprovedDQN-cartpole-loss.png> <C:/Users
-/dislab2017/Desktop/assign/ImprovedDQN-cartpole-distance.png> <C:/Users/dislab2
-017/Desktop/assign/ImprovedDQN-mountain-loss.png> <C:/Users/dislab2017/Desktop/
-assign/ImprovedDQN-mountain-distance.png> <C:/Users/dislab2017/Desktop/assign/I
-mprovedDQN-mountain-result.png>] [8 <C:/Users/dislab2017/Desktop/assign/Improve
-dDQN-acrobot-loss.png> <C:/Users/dislab2017/Desktop/assign/ImprovedDQN-acrobot-
-distance.png> <C:/Users/dislab2017/Desktop/assign/ImprovedDQN-acrobot-result.pn
-g>] (C:\Users\dislab2017\Desktop\assign\assign3_report.aux) ) 
+
+Underfull \hbox (badness 10000) in alignment at lines 371--387
+[][][][]
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+(C:\Users\dislab2017\Desktop\assign\assign3_report.bbl [8 <C:/Users/dislab2017/
+Desktop/assign/ImprovedDQN-mountain-loss.png> <C:/Users/dislab2017/Desktop/assi
+gn/ImprovedDQN-mountain-distance.png> <C:/Users/dislab2017/Desktop/assign/Impro
+vedDQN-mountain-result.png> <C:/Users/dislab2017/Desktop/assign/ImprovedDQN-acr
+obot-loss.png> <C:/Users/dislab2017/Desktop/assign/ImprovedDQN-acrobot-distance
+.png> <C:/Users/dislab2017/Desktop/assign/ImprovedDQN-acrobot-result.png>])
+[9] (C:\Users\dislab2017\Desktop\assign\assign3_report.aux) ) 
 Here is how much of TeX's memory you used:
- 6748 strings out of 495362
- 90141 string characters out of 3184022
- 150985 words of memory out of 3000000
- 9552 multiletter control sequences out of 15000+200000
- 35979 words of font info for 129 fonts, out of 3000000 for 9000
+ 6907 strings out of 495362
+ 92286 string characters out of 3184022
+ 147994 words of memory out of 3000000
+ 9683 multiletter control sequences out of 15000+200000
+ 39887 words of font info for 142 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 40i,14n,32p,1185b,1575s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 40i,14n,32p,1185b,1619s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Windows/Fonts/
-simhei.ttf><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Window
-s/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C
-:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsu
-n.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fon
-ts/simsun.ttc><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Win
-dows/Fonts/simhei.ttf><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc
+simsun.ttc><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Window
+s/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simhei.ttf><C
+:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhe
+i.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fon
+ts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Win
+dows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc
 ><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/si
 msun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/
-Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/
-Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.
+Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simhei.ttf><C:/
+Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simsun.
 ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts
 /simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windo
 ws/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><
@@ -975,27 +980,32 @@ ndows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.tt
 c><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/s
 imsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows
 /Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:
-/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simhei
-.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simsun.ttc><C:/Windows/Font
+/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun
+.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Font
 s/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Wind
 ows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc>
 <C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/sim
-sun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/CTEX/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/CTEX/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmbx12.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.p
-fb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/CTEX/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmmi5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmmi7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/C
-TEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/CTEX/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmr17.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-r7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/CTEX/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmsy5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C
-:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/CTEX/MiKTeX/fonts/t
-ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on assign3_report.pdf (8 pages, 1466750 bytes).
+sun.ttc><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/F
+onts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/W
+indows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.t
+tc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/
+simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc><C:/Window
+s/Fonts/simsun.ttc><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C
+:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/CTEX/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/CTEX
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/CTEX/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12
+.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/CTEX/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmr7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/C
+TEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/CTEX/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+ti10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/CTEX/MiK
+TeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on assign3_report.pdf (9 pages, 1535038 bytes).
 PDF statistics:
- 485 PDF objects out of 1000 (max. 8388607)
+ 543 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 366 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 378 words of extra memory for PDF output out of 10000 (max. 10000000)
 
